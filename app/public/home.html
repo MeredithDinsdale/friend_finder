@@ -5,51 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Friend Finder</title>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-<div class="jumbotron" style="background-color: pink; color: rgb(78, 75, 75)">
-    <h1>FRIEND FINDER</h1>
-    <a href="survey.html"><button>TAKE THE SURVEY</button></a>
+<div class="jumbotron text-center" style="background-color: pink; color: rgb(78, 75, 75)">
+    <h1><span class="fa fa-heart"></span> LOVE MATCH CALCULATOR <span class="fa fa-heart"></span></h1>
+    <br>
+    <a href="survey.html"><button>Find Your True Love</button></a>
 </div>
 <br>
-<div class="row">
-    <h1>Hot Singles In Your Area!</h1>
-   
-</div>
+
 <br>
-<div class="row">
-    <div class="col">
-            <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                      <p class="card-text"><h3>Name: Simon</h3><h3>Age: 38</h3><h3>Location: Milwaukie</h3></p>
-                    </div>
-                  </div>
+<div class="container">
+        <div class="row">
+            
+            <div class = 'col'>
+                <h1>Hot Singles in Your Area!</h1>
+            </div>
+            
+        </div>
+        <br>
+        <div class="row">
+            <div class='col text-center' id="friendDisplay1"></div>
+            <div class="col text-center" id="friendDisplay2"></div>
+            <div class="col text-center" id="friendDisplay3"></div>
+        </div>
+        <br><br>
     </div>
-    <div class="col">
-            <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                      <p class="card-text"><h3>Name: Rita</h3><h3>Age: 26</h3><h3>Location: Portland</h3></p>
-                    </div>
-                  </div>
-    </div>
-    <div class="col">
-            <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="..." alt="Card image cap">
-                    <div class="card-body">
-                      <p class="card-text"><h3>Name: Dori</h3><h3>Age: 32</h3><h3>Location: Portland</h3></p>
-                    </div>
-                  </div>
-    </div>
-</div>
 
-</div>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>  
-
+    <!-- Bootstrap JS Links -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
 </body>
+
 </html>
+
+<script type="text/javascript">
+    var currentURL = window.location.origin;
+    $.ajax({ url: currentURL + "/api/friends", method: "GET" })
+        .done(function (friendData) {
+            console.log(friendData);
+            let column = 1;
+            for (let i = 0; i < friendData.length; i++) {
+                if (column >= 4) {
+                    column = 1;
+                }
+                let card = $('<div>').addClass('card').attr('style', 'width:18rem');
+                let cardImg = $('<img>').addClass('card-img-top').attr('src', friendData[i].photo).attr('style', 'width:286px; height:180px;');
+                let body = $('<div>').addClass('card-body');
+                let title = $('<h5>').addClass('card-title').text(friendData[i].name);
+                
+                body.append(title);
+                card.append(cardImg).append(body);
+                $('#friendDisplay' + column).append(card);
+                column++;
+            }
+        });
+</script>

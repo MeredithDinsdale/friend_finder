@@ -4,248 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script
-    src="https://code.jquery.com/jquery-3.4.0.slim.min.js"
-    integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
-    crossorigin="anonymous"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Love Match Survey</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/path/to/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-        <div class="container">
-
-                <div class="jumbotron" style="background-color: pink; color: rgb(78, 75, 75)">
-                  <h1 class="text-center">
-                    <span class="fa fa-heart"></span> Find Your Match!<span class="fa fa-heart"></span> </h1>
-                  <hr>
-                  <h2 class="text-center">Let's talk about you...</h2>
-                  <br>
-                  <div class="text-center">
+<div class="container">
+    <!-- MODAL -->
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- MODAL CONTENT-->
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Love is in the air! We think you would look great walking down the street with... </h4>
                     
-                    <a href="home.html">
-                      <button class="btn btn-lg btn-default">
-                        <span class="fa fa-home"> Home</span>
-                      </button>
-                    </a>
-                  </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="row">
-                  <div class="col-lg-12">
-                    
-                    <div class="card">
-                      <div class="card-header">
-                        Tell us about yourself
-                      </div>
-                      <div class="card-body">
-                        <form role="form">
-                          <div class="form-group">
+                <div class='row'>
+                    <div class = 'col'></div>
+                    <div class = 'col' id="newMatch">
+                    <!-- New Match data is appended here -->
+                    </div>
+                    <div class = 'col'></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/" style="align-content: left">
+                        <button type="button" class="btn btn-primary"><i class="fas fa-home"></i>Home</button>
+                    </a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron" style="background-color: pink; color: rgb(78, 75, 75)">
+        <h1 class="text-center">
+            <span class="fa fa-heart"></span> Find Your Love Match!<span class="fa fa-heart"></span> 
+        </h1>
+        <br>
+        <h2 class="text-center">First, let's talk about you...</h2>
+        <br>
+        <div class="text-center">
+            <a href="home.html">
+              <button class="btn btn-lg btn-default">
+                <span class="fa fa-home"> Home</span>
+              </button>
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Fill out the form below:</h2>
+                </div>
+                <div class="card-body">
+                    <form role="form">
+                        <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name">
-                          </div>
-                          <div class="form-group">
+                        </div>
+                        <div class="form-group">
                             <label for="photo">Photo URL</label>
                             <input type="text" class="form-control" id="photo">
-                          </div>
-                          <div class="input-field col s12">
-                                <h3>Question 1</h3>
-                                <h5>You would rather have a kale ceasar salad than a Totinos pepperoni pizza.</h5>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 1</h3>
+                            <h5>You would rather have a kale ceasar salad than a Totinos pepperoni pizza.</h5>
                                 <select id="question1">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 2</h3>
-                                <h5>You think travelling to Mexico is scary.</h5>
-                                <select id="question2">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 3</h3>
-                                <h5>You always ask for five stars spicy when ordering Thai Food.</h5>
-                                <select id="question3">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 4</h3>
-                                <h5>You consider Blue Apron meal deliveries to be an economical and fun choice.</h5>
-                                <select id="question4">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 5</h3>
-                                <h5>You like to be barefoot outside.</h5>
-                                <select id="question5">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 6</h3>
-                                <h5>You consider drinking coke outside of a cocktail to be a character flaw.</h5>
-                                <select id="question6">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 7</h3>
-                                <h5>You feel like shopping at Goodwill is a good way to get a rash.</h5>
-                                <select id="question7">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 8</h3>
-                                <h5>You would rather go camping in a National Park than stay in a Hilton in a major city.</h5>
-                                <select id="question8">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 9</h3>
-                                <h5>You think Donald Trump would do great things with a second term.</h5>
-                                <select id="question9">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-    
-                            <div class="input-field col s12">
-                                <h3>Question 10</h3>
-                                <h5>You have said "all lives matter" in response to a black lives matter activist.</h5>
-                                <select id="question10">
-                                    <option value="" disabled selected>Choose your option</option>
-                                    <option value="1">1 (Strongly Disagree)</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5 (Strongly Agree)</option>
-                                </select>
-                            </div>
-                          <button type="submit" class="btn btn-primary submit">Submit</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 2</h3>
+                            <h5>You think travelling to Mexico is scary.</h5>
+                            <select id="question2">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 3</h3>
+                            <h5>You always ask for five stars spicy when ordering Thai Food.</h5>
+                            <select id="question3">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 4</h3>
+                            <h5>You consider Blue Apron meal deliveries to be an economical and fun choice.</h5>
+                            <select id="question4">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 5</h3>
+                            <h5>You like to be barefoot outside.</h5>
+                            <select id="question5">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 6</h3>
+                            <h5>You consider drinking coke outside of a cocktail to be a character flaw.</h5>
+                            <select id="question6">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 7</h3>
+                            <h5>You feel like shopping at Goodwill is a good way to get a rash.</h5>
+                            <select id="question7">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 8</h3>
+                            <h5>You would rather go camping in a National Park than stay in a Hilton in a major city.</h5>
+                            <select id="question8">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 9</h3>
+                            <h5>You think Donald Trump would do great things with a second term.</h5>
+                            <select id="question9">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s12">
+                            <h3>Question 10</h3>
+                            <h5>You have said "all lives matter" in response to a black lives matter activist.</h5>
+                            <select id="question10">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1">1 (Strongly Disagree)</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5 (Strongly Agree)</option>
+                            </select>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                    </form>
                 </div>
-            
-            
-                <footer class="footer">
-                  <div class="container">
-                    <p>
-                      <a href="/api/friends">API Friends Link</a> |
-                  
-                  </div>
-                </footer>
-            
-              </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>
+              <a href="/api/friends">API Friends Link</a> 
+            </p>
+        </div>
+    </footer>
+    
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"
+integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" 
+integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" 
+crossorigin="anonymous"></script>
+
 </body>
 </html>
-<script
-  src="https://code.jquery.com/jquery-3.4.0.min.js"
-  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
-  crossorigin="anonymous"></script>
-<!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
+
 <script type="text/javascript">
     // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
     // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
     // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
     // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
-  
-    $(".submit").on("click", function(event) {
-      event.preventDefault();
-      console.log("You clicked submit");
-  
-      // Here we grab the form elements
-      var surveyResponse = {
-        name: $("#name").val().trim(),
-        photo: $("#photo").val().trim(),
-        scores:[
-					$('#question1').val().trim(),
-					$('#question2').val().trim(),
-					$('#question3').val().trim(),
-					$('#question4').val().trim(),
-					$('#question5').val().trim(),
-					$('#question6').val().trim(),
-					$('#question7').val().trim(),
-					$('#question8').val().trim(),
-					$('#question9').val().trim(),
-					$('#question10').val().trim()
-				]
-        
-      };
-  
-      console.log(surveyResponse);
-  
-      // This line is the magic. It"s very similar to the standard ajax function we used.
-      // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-      // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-      // depending on if a tables is available or not.
-  
-      $.post("/api/friends", surveyResponse);
-        alert("thank you for your answers!");
-  
-          // Clear the form when submitting
-          $("#name").val("");
-          $("#photo").val("");
-          
-        });
-  
 
-  
-  </script>
-  
+    $(".submit").on("click", function (event) {
+        event.preventDefault();
+        if ($('#name').val() === '') {
+            alert('You must enter a name.');
+        }
+        else {
+            // Here we grab the form elements
+            var newFriend = {
+                photo: $("#photo").val().trim(),
+                name: $("#name").val().trim(),
+                scores: [$("#question1").val().trim(), 
+                         $("#question2").val().trim(), 
+                         $("#question3").val().trim(), 
+                         $("#question4").val().trim(), 
+                         $("#question5").val().trim(),
+                         $("#question6").val().trim(), 
+                         $("#question7").val().trim(), 
+                         $("#question8").val().trim(), 
+                         $("#question9").val().trim(), 
+                         $("#question10").val().trim()
+                        ],
+            };
+            console.log(newFriend);
+            //add friend to friendsData
+            $.post("/api/friends", newFriend, function (data) {
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    let modBody = $('<div>').addClass('modal-body match text-center');
+                    let card = $('<div>').addClass('card').attr('style', 'width:18rem');
+                    let cardImg = $('<img>').addClass('card-img-top').attr('src', data[i].photo).attr('style', 'width:286px; height:180px;');
+                    let cardBody = $('<div>').addClass('card-body');
+                    let title = $('<h5>').addClass('card-title').text(data[i].name);
+                    cardBody.append(title);
+                    card.append(cardImg).append(cardBody);
+                    modBody.append(card);
+                    $('#newMatch').append(modBody);
+                }
+                $('#myModal').modal('toggle');
+            });
+            $('#myModal').on('hidden.bs.modal', function (e) {
+                $('.match').remove();
+                window.open('/survey', "_self");
+            })
+        }
+    });
+</script>
+    

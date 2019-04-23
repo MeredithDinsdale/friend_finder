@@ -18,31 +18,66 @@ module.exports = function(app) {
 
 // ---------------------------------------------------------------------------
 
-  app.post("/api/friends", function(req, res) {
+app.post("/api/friends", function(req, res){
 
-   let userInput = req.body;
-   let userScore = userInput.scores;
+    let newFriend = req.body;
+    let newScore = req.body.scores;
+    let newTotal = getTotal(newScore);
+    let totalDiff = [];
+    let matchArr = [];
 
-   let matchName = '';
-   let matchPhoto = '';
-    
 
-        for (var i=0; i<friendsData.length; i++) {
-            let diff = 0;
-            for (var j=0; j<userScore.length; j++) {
-                diff += Math.abs(friendsData[i].scores[j] - userScore[j]);
-            }
-            if (diff < totalDiff) {
-                matchName = friendsData[i].name;
-                matchPhoto = friendsData[i].photo;
-                console.log(matchName, matchPhoto);
-            }
+    for(let i = 0; i<friendsData.length; i++){
+        
+        totalDiff.push(Math.abs(newTotal - getTotal(friendsData[i].scores)));
+        
+    }
+
+    let friendIndex = getIndex(totalDiff);
+
+    console.log('totalDiff = '+totalDiff);
+    console.log('friendIndex = '+friendIndex);
+
+    for(let i = 0; i<friendIndex.length; i++){
+        matchArr.push(friendsData[friendIndex[i]]);
+    };
+
+    console.log(matchArr);
+
+    friendsData.push(newFriend);
+
+    res.json(matchArr);
+
+});
+
+function getTotal(friendScores){
+
+    let Total = 0;
+
+    for(let i = 0; i<friendScores.length; i++){
+        let toInt = parseInt(friendScores[i]);
+        Total = Total + toInt;
+    }
+    console.log('Total = '+Total);
+
+    return Total;
+}
+
+function getIndex(totalDiff){
+
+    indexArr = [];
+
+    let smallVal = Math.min(...totalDiff);  
+
+    for(let i = 0; i<totalDiff.length; i++){
+        if(totalDiff[i] === smallVal){
+            indexArr.push(i);
         }
+    }
 
-    friendsData.push(req.body);
-    res.json(true);
-     
-  });
+    return indexArr;
+}
+
 }
 
   
